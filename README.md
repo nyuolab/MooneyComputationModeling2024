@@ -39,3 +39,6 @@ First run `snakemake {figure you want} --configfile config.yaml` to obtain the d
 
 ## Training your own model
 Remember to replace the path of ImageNet-1k with your own directory, and run `snakemake train_all_models`. Note that depending on the number of processes you provide to `snakemake`, you might be training more than one job at the same time.
+
+## License
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
