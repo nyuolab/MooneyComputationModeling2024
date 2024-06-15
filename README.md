@@ -5,6 +5,8 @@ To produce results, go our OSF page, download and decompress the `data.zip` file
 ## System requirements
 This code has been tested on MacOS Sonoma and big sur, and on a slurm-based linux HPC cluster. It's recommended you have GPUs or high memory CPUs for most of the operations in our code. We used `python 3.11` for our programs. In principle other versions could work, but be warned that this is not teseted.
 
+On a "normal" computer, assuming you use our provided trained model weights, running with 32 cores and sufficient memory, it's unlikely to produce all analysis files within a week. One an HPC with about 128 workers each equippend with 32 cores, it takes about 2 days.
+
 ## Python requirements
 We recommend using a conda environment to reproduce the results. First, create a conda environment: 
 ```bash
