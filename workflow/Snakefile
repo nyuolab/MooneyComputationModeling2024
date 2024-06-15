@@ -1,0 +1,32 @@
+configfile: "config.yaml"
+
+
+wildcard_constraints:
+    model="[a-zA-Z0-9_-]+",
+    seed="[0-9]+",
+    phase="pre|post|gray|pre-post|pre-gray|post-gray|all|g|gs|diff|change",
+    subject="[0-9]+",
+    source="[a-z_]+",
+    roi="[a-zA-Z0-9]+",
+    train_phase="pre|post|gray",
+    test_phase="pre|post|gray",
+
+localrules:
+    all_vis,
+    train_all_models,
+
+
+if os.getenv("SLURM_JOB_ID"):
+    os.system("module load fsl")
+    os.environ["FSLDIR"] = "/gpfs/share/apps/fsl/6.0.5/fsl"
+    os.environ["FSLOUTPUTTYPE"] = "NIFTI_GZ"
+
+
+include: "rules/model.smk"
+include: "rules/behaviors.smk"
+include: "rules/behaviors_pred.smk"
+include: "rules/make_viz.smk"
+include: "rules/fmri.smk"
+include: "rules/encoding.smk"
+include: "rules/spatial_comparisons.smk"
+include: "rules/gradient.smk"

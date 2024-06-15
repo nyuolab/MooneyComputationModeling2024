@@ -1,0 +1,7 @@
+# For submitting jobs
+jobscript: "cluster_config/jobscript.sh"
+cluster-config: "cluster.yaml"
+cluster: "sbatch --nodes={cluster.nodes} --qos=qos_free --job-name={cluster.jobname} --cpus-per-task={cluster.cpuspertask} --mem-per-cpu={cluster.mempercpu} --time={cluster.time} --partition={cluster.partition} --gres=gpu:a100:{cluster.gpus}"
+jobs: 32
+verbose: true
+notemp: true

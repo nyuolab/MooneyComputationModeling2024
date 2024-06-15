@@ -1,0 +1,139 @@
+# Meta
+configfile: config.yaml
+tags: [single_state]
+central_logging_run_name: central_logging_run
+
+# For fmri
+n_conditions: 99
+limit_prediction_dimensions: -1
+
+# Dataset
+dataset: imagenet-1k
+train_split_name: train
+val_split_name: validation
+cache_dir: /gpfs/data/oermannlab/hf_datasets/
+
+# Training
+project_name: transformer_topdown
+train_batchsize: 6
+eval_batchsize: 18
+accumulate_steps: 16
+n_gpus: 8
+n_nodes: 1
+workers: 6
+epochs: 25
+learning_rate: 0.0001
+fp16: True
+n_subset_train: -1
+n_subset_eval: -1
+
+# LoRA
+cross_attention_heads: 8
+lora_r: 64
+lora_alpha: 16
+lora_targets: ["query", "key"]
+
+# Boilerplates
+model_seeds: [0, 1, 2, 3]
+model_prefix: facebook
+source_model:
+  - dinov2-base-imagenet1k-1-layer
+backbone_channels:
+  dinov2-base-imagenet1k-1-layer: 768
+  dinov2-small-imagenet1k-1-layer: 384
+use_cpu: False
+n_condition_tokens: 10
+
+# Temporal training arguments
+temporal_repeats: 3
+batch_mixing: 3
+
+# Visualizing attention maps
+attn_map_sequences: [dog, diff_anchor, diff_fish]
+
+# Feature type for model features
+feature_types: [latent_vis, vis]
+accumulate_feature_types: [accumulate_vis]
+static_feature_types: [static_vis]
+layer_feature_types:
+  [
+    layer_00,
+  ]
+
+feature_num_layers: 12
+n_native_trials: 1000
+synthetic_trials: 200
+
+# Evaluate on behavior sequences
+n_behavior_subjects: 12
+fmri_subjects:
+  [4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25]
+full_fmri_subjects:
+  [4, 6, 8, 9, 10, 11, 13, 14, 15, 16, 17, 21, 22, 23, 25]
+model_rdm_method: correlation
+fmri_rdm_method: correlation
+similarity_method: corr
+
+roi_threshold: 0.7
+
+# Merge some rois together
+roi_merging_dict:
+  # Coarser
+  EVC: [V1_L, V1_R, V2_L, V2_R, V3_L, V3_R, V4_L, V4_R]
+  IT: [FG_L, FG_R, LOC_L, LOC_R]
+  FPN: [FPN/FPN-FL, FPN/FPN-FR, FPN/FPN-PL, FPN/FPN-PR]
+  DMN: [DMN/DMN-MPFC, DMN/DMN-PCC, DMN/DMN-PL, DMN/DMN-PR]
+
+  # More granular
+  V1: [V1_L, V1_R]
+  V2: [V2_L, V2_R]
+  V3: [V3_L, V3_R]
+  V4: [V4_L, V4_R]
+  FG: [FG_L, FG_R]
+  LOC: [LOC_L, LOC_R]
+  FPNF: [FPN/FPN-FL, FPN/FPN-FR]
+  FPNP: [FPN/FPN-PL, FPN/FPN-PR]
+
+  DMNMPFC: [DMN/DMN-MPFC]
+  DMNPCC: [DMN/DMN-PCC]
+  DMNP: [DMN/DMN-PL, DMN/DMN-PR]
+
+# List of ROIs to evaluate on
+full_roi_list:
+  [
+    V1,
+    V2,
+    V3,
+    V4,
+    LOC,
+    FG,
+    FPNF,
+    FPNP,
+    DMNP,
+    IT,
+    EVC,
+    FPN,
+    DMN,
+  ]
+phase_order: ["pre", "post", "gray", "all", "pre-post", "pre-gray", "post-gray"]
+
+standard_rois: [
+  "DMN_MPFC", "DMN_PCC", "DMN_PL", "DMN_PR",
+  "FG_L", "FG_R", "FPN_FL", "FPN_FR", "FPN_PL", "FPN_PR",
+  "LO1", "LO2", "v1", "v2", "v3", "hv4",
+  "IPS0", "IPS1", "IPS2", "IPS3", "IPS4", "IPS5", "SPL",
+  "parietal_operculum", "superior_parietal_lobule", "postcentral_gyrus",
+]
+
+# Searchlight setup
+searchlight_ball_radius: 2
+searchlight_ball_threshold: 0.1
+searchlight_workers: 16
+sl_permutations: 10000
+tfce: True
+p_threshold: 0.05
+neg_logp_threshold: 1.3
+
+# Create gray matter mask
+gm_opening: 0
+gm_threshold: 0.6

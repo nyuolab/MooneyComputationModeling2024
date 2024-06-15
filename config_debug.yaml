@@ -1,0 +1,69 @@
+# Meta
+configfile: config_debug.yaml
+tags: [debug]
+central_logging_run_name: central_logging_run
+
+# For fmri
+n_conditions: 99
+limit_prediction_dimensions: 5
+
+# Dataset
+dataset: zh-plus/tiny-imagenet
+train_split_name: train
+val_split_name: valid
+cache_dir: "/Users/chris/.cache/huggingface/datasets/"
+
+# Training
+project_name: debug
+train_batchsize: 2
+eval_batchsize: 4
+accumulate_steps: 1
+workers: 1
+epochs: 1
+learning_rate: 0.00001
+fp16: False
+n_subset_train: 20
+n_subset_eval: 20
+
+# LoRA
+cross_attention_heads: 8
+lora_r: 16
+lora_alpha: 16
+lora_targets: ["query"]
+
+# Boilerplates
+model_seeds: [0, 1]
+model_prefix: facebook
+source_model:
+  - dinov2-small-imagenet1k-1-layer
+backbone_channels:
+  dinov2-small-imagenet1k-1-layer: 384
+use_cpu: True
+feature_num_layers: 13
+
+# Model setup
+n_condition_tokens: 5
+
+# Temporal training arguments
+temporal_repeats: 1
+batch_mixing: 2
+
+# Evaluate on behavior sequences
+n_behavior_subjects: 2
+fmri_subjects: [4, 7, 10]
+full_roi_list: [V2, V3, V4, LOC]
+n_native_trials: 3
+synthetic_trials: 3
+
+roi_threshold: 0.7
+
+# Searchlight setup
+searchlight_ball_radius: 6
+searchlight_ball_threshold: 0.1
+searchlight_workers: 4
+sl_permutations: 10
+tfce: True
+neg_logp_threshold: 0.0
+
+mesh: "fsaverage3"
+n_neighbors: 3

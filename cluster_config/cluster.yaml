@@ -1,0 +1,130 @@
+__default__:
+  jobname: "{rule}.{wildcards}"
+  cpuspertask: 1
+  nodes: 1
+  mempercpu: "5000mb"
+  time: "5:00:00"
+  partition: "cpu_short"
+  gpus: 0
+
+get_gradient:
+  partition: "fn_short"
+  mempercpu: 800gb
+
+get_pred_error:
+  partition: "cpu_short"
+  mempercpu: 10000mb
+
+get_null:
+  partition: "fn_short"
+  mempercpu: 20000mb
+  time: "10:00:00"
+  cpuspertask: 8
+
+get_thresholded_p_null:
+  partition: "fn_short"
+  mempercpu: 20000mb
+  time: "10:00:00"
+  cpuspertask: 8
+
+comparison_roi:
+  partition: "cpu_short"
+  mempercpu: 50000mb
+
+compare_hypothesized_roi:
+  partition: "cpu_short"
+  mempercpu: 50000mb
+
+compare_overlap_components:
+  partition: "cpu_short"
+  mempercpu: 50000mb
+
+comparison_roi_thresholded_p:
+  partition: "cpu_short"
+  mempercpu: 50000mb
+
+evaluate_n_components_single:
+  partition: "fn_short"
+  mempercpu: 20000mb
+
+evaluate_n_components_single_boot:
+  partition: "fn_short"
+  mempercpu: 20000mb
+
+get_components:
+  partition: "cpu_short"
+  mempercpu: 20000mb
+
+get_component_importance:
+  partition: "cpu_short"
+  mempercpu: 20000mb
+
+find_significance_map_enc:
+  mempercpu: 2000mb
+  cpuspertask: 8
+
+find_significance_map_enc_repetitions:
+  mempercpu: 2000mb
+  cpuspertask: 8
+
+find_where_below_nc:
+  mempercpu: 2000mb
+  cpuspertask: 8
+
+find_where_above_nc:
+  mempercpu: 2000mb
+  cpuspertask: 8
+
+find_significance_map:
+  mempercpu: "5000mb"
+  cpuspertask: "{config[searchlight_workers]}"
+
+find_significance_map_single:
+  mempercpu: "5000mb"
+  cpuspertask: "{config[searchlight_workers]}"
+
+train_model:
+  mempercpu: "10000mb"
+  cpuspertask: 40
+  time: "10-00:00:00"
+  gpus: "{config[n_gpus]}"
+  nodes: "{config[n_nodes]}"
+  partition: "a100_short"
+
+behavior_rec_pred:
+  mempercpu: "5000mb"
+
+behavior_trial_real:
+  mempercpu: "50000mb"
+  gpus: 1
+
+make_long_behavior_test:
+  mempercpu: "50000mb"
+  gpus: 1
+
+quantify_attention_shift:
+  gpus: 1
+  mempercpu: "50000mb"
+  partition: "oermannlab"
+
+quantify_attention_shift_all:
+  mempercpu: "30000mb"
+
+trustworthiness:
+  mempercpu: "50000mb"
+  partition: "fn_short"
+
+fmri_trial_real:
+  partition: "a100_short"
+  mempercpu: "50000mb"
+  gpus: 1
+
+fmri_trial_repetition:
+  partition: "a100_short"
+  mempercpu: "50000mb"
+  gpus: 1
+
+counterfactual_model_feat:
+  partition: "a100_short"
+  mempercpu: "10000mb"
+  gpus: 1
