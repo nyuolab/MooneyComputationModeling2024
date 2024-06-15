@@ -52,12 +52,23 @@ batch_mixing: 3
 attn_map_sequences: [dog, diff_anchor, diff_fish]
 
 # Feature type for model features
-feature_types: [latent_vis, vis]
+feature_types: [latent_vis, vis, cls, logits]
 accumulate_feature_types: [accumulate_vis]
 static_feature_types: [static_vis]
 layer_feature_types:
   [
     layer_00,
+    layer_01,
+    layer_02,
+    layer_03,
+    layer_04,
+    layer_05,
+    layer_06,
+    layer_07,
+    layer_08,
+    layer_09,
+    layer_10,
+    layer_11,
   ]
 
 feature_num_layers: 12
