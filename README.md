@@ -1,4 +1,4 @@
-# Nature2023MooneyScripts
+# MooneyScripts2024
 ## Download other required data to reproduce our results
 To produce results, go our OSF page, download and decompress the `data.zip` file and the model checkpoint `model_checkpoint.tar`. Put the contents of data at the root, and create a folder `results/checkpoints` and put the checkpoints there. Then you can use `snakemake` to reproduce any results you want.
 
