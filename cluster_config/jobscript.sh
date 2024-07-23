@@ -2,7 +2,7 @@
 # properties = {properties}
 
 source ~/.bashrc
-conda activate env2023
-exp_pypath env2023
+conda activate mooney_comp
+exp_pypath mooney_comp
 
 {exec_job}
