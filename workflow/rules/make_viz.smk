@@ -14,7 +14,7 @@
 # along with Mooney computational modeling project. If not, see <https://www.gnu.org/licenses/>.
 
 
-include: "visualizations/attention_map.smk"
+# include: "visualizations/attention_map.smk"
 include: "visualizations/learning.smk"
 include: "visualizations/recognition.smk"
 include: "visualizations/attention_shift.smk"
